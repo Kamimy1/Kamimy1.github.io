@@ -3,16 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Circulos con mensajes</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        .message-box {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #000;
+            border-radius: 10%;
+            padding: 10px;
+            z-index: 999;
+            text-align: justify;
+        }
+
+        .close-btn {
+            font-size: 0.75em;
+            float: right;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            float: right;
+        }
+
+        @media (orientation: portrait) {
+            .container {
+                display: none;
+            }
+
+            .flip-landscape {
+                display: block;
+            }
+
+            .fa-rotate {
+                margin-top: 25vh;
+                font-size: 100vw;
+            }
+        }
+
+        @media (orientation: landscape) {
+
+            .flip-landscape {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="flip-landscape">
+        <i class="fa-solid fa-rotate"></i>
+    </div>
     <div class="container" oncontextmenu="togglePointsCreation(event)">
-        <img src="/images/mirador.jpg" alt="Imagen" id="imagen">
-        <!-- <img src="https://www.osuna.es/export/sites/osuna/.galleries/Mutimedia/Calles/MIRADOR-DE-LA-COLEGIATA.jpg_538135410.jpg"
-            alt="Imagen" id="imagen"> -->
+        <img src="https://www.osuna.es/export/sites/osuna/.galleries/Mutimedia/Calles/MIRADOR-DE-LA-COLEGIATA.jpg_538135410.jpg"
+            alt="Imagen" id="imagen">
     </div>
     <script>
         var messages = {};
@@ -41,21 +100,57 @@
             ];
         var pointsCreationEnabled = false;
         var ventanaAncho = window.innerWidth;
+        
         var ventanaAlto = window.innerHeight;
         var imagen = document.getElementById('imagen');
 
 
         window.onload = function () {
+            // screen.orientation.lock("landscape");
             // Obtener el ancho de la ventana en pixeles
+
+            // let wasPortrait = screen.orientation.type.startsWith('portrait');
+
+            // screen.orientation.addEventListener("change", (event) => {
+            //     let isPortrait = screen.orientation.type.startsWith('portrait');
+
+
+            //     if (wasPortrait && !isPortrait) {
+                    buildApp();
+                   
+            //     }
+                
+            //     wasPortrait = isPortrait;
+
+            // });
+            
+
+        }
+
+
+        function buildApp() {
 
             for (var i = 0; i < circlesData.length; i++) {
                 // Acceder al objeto actual
                 var circleData = circlesData[i];
 
                 // Modificar dinámicamente los valores de x e y
-                circleData.x = (window.innerWidth / (imagen.naturalWidth / circleData.x)); // Modificar el valor de x
-                circleData.y = ((window.innerWidth / (imagen.naturalWidth / imagen.naturalHeight)) / (imagen.naturalHeight / circleData.y)); // Modificar el valor de x
+                // circleData.x = (window.innerWidth / (imagen.naturalWidth / circleData.x)); // Modificar el valor de x
+                // circleData.y = ((window.innerWidth / (imagen.naturalWidth / imagen.naturalHeight)) / (imagen.naturalHeight / circleData.y)); // Modificar el valor de y
 
+                console.log(
+                    "x: " + circleData.x + '\n' +
+                    "Ancho ventana usando window.innerWidth: " + ventanaAncho + '\n' +
+                    "Ancho ventana usando document.documentElement.clientWidth: " + document.documentElement.clientWidth + '\n' +
+                    "Ancho imagen: " + imagen.naturalWidth + '\n' +
+                    "División (imagen.naturalWidth / circleData.x):" + (imagen.naturalWidth / circleData.x) + '\n' +
+                    "División (window.innerWidth / (imagen.naturalWidth / circleData.x)):" + (window.innerWidth / (imagen.naturalWidth / circleData.x))
+                );
+
+                circleData.x = (ventanaAncho / (imagen.naturalWidth / circleData.x)); // Modificar el valor de x
+
+
+                circleData.y = ((ventanaAncho / (imagen.naturalWidth / imagen.naturalHeight)) / (imagen.naturalHeight / circleData.y)); // Modificar el valor de y
 
 
 
@@ -72,6 +167,8 @@
                 renderCircle(data);
             });
         }
+
+
         function togglePointsCreation(event) {
             event.preventDefault(); // Evita que aparezca el menu contextual del navegador al hacer clic derecho
             pointsCreationEnabled = !pointsCreationEnabled;
@@ -148,10 +245,11 @@
                 messages[messageId] = messageBox;
             }
 
-            requestAnimationFrame(function() {
+            requestAnimationFrame(function () {
                 var messageElement = messages[messageId];
                 var numCaracteres = messageElement.innerText.length;
                 var ventanaAncho = window.innerWidth;
+                
                 var imagenAncho = imagen.naturalWidth;
 
                 // Calcular el ancho deseado del mensaje
@@ -180,7 +278,16 @@
         // Función para renderizar un círculo
         function renderCircle(data) {
             var relacionCirculo = (window.innerWidth * 10) / imagen.naturalWidth;
-
+            //Math.max(screen.width, screen.height)
+            
+            console.log("relacion circulo:"+relacionCirculo);
+            console.log(
+                
+            "(window.innerWidth * 10) / imagen.naturalWidth"+
+            "\n"+
+            "("+window.innerWidth+"* 10) / "+imagen.naturalWidth+":"+relacionCirculo
+            
+            );
             var container = document.querySelector('.container');
             var circle = document.createElement('div');
             circle.className = 'circle';
@@ -211,6 +318,64 @@
         // Escuchar los clics en la pagina para agregar circulos si la creacion de puntos esta habilitada
         document.addEventListener('click', addCircle);
         document.addEventListener("keypress", extraerInformacion);
+
+        let wasPortrait = screen.orientation.type.startsWith('portrait');
+
+        screen.orientation.addEventListener("change", (event) => {
+            let isPortrait = screen.orientation.type.startsWith('portrait');
+
+            // imagen.style.width = ventanaAncho + 'px';
+            // console.log("ANCHO:"+imagen.style.width);
+
+
+            if (wasPortrait && !isPortrait) {
+                // Aquí se ejecuta el código cuando se pasa de retrato a paisaje
+                imagen.style.width = Math.max(screen.width, screen.height) + 'px';
+                console.log("1Ancho:" + screen.width + "\n" + "Alto:" + screen.height);
+
+                
+                document.querySelectorAll('.circle').forEach(circle => circle.remove());
+
+                buildApp();
+                // var nuevoAnchoImagen = imagen.width;
+                // var nuevoAltoImagen = imagen.height;
+                // imagen.style.width = window.innerHeight + 'px';
+                // console.log("ANCHO:" + imagen.style.width);
+                // console.log("ALTO:" + window.innerWidth);
+
+
+                // var nuevoAnchoImagen = window.outerHeight;
+                // var nuevoAltoImagen = window.outerWidth;
+                // console.log("Ancho:" + nuevoAnchoImagen + "\n" + "Alto:" + nuevoAltoImagen);
+                // var circles = document.querySelectorAll('.circle');
+                // circles.forEach((circleElement, index) => {
+                //     var circleData = circlesData[index];
+
+                //     // Calcular nuevas posiciones proporcionales
+
+                //     var nuevaX = circleData.x;
+                //     var nuevaY = circleData.y;
+                //     console.log(nuevaX+"\n"+nuevaY);
+                //     // var nuevaX = (nuevoAnchoImagen / imagen.naturalWidth) * circleData.x;
+                //     // var nuevaY = ((nuevoAltoImagen / (imagen.naturalWidth / imagen.naturalHeight)) / (imagen.naturalHeight / circleData.y));
+                //     // Actualizar la posición del círculo en el DOM
+                //     circleElement.style.left = `${nuevaX - (circleElement.offsetWidth / 2)}px`;
+                //     circleElement.style.top = `${nuevaY - (circleElement.offsetHeight / 2)}px`;
+                // });
+
+
+                // console.log("Alto "+ventanaAlto);
+                // console.log("Ancho "+ventanaAncho);
+            }
+            // else if (!wasPortrait && isPortrait) {
+            //     imagen.style.width = window.outerWidth + 'px';
+            //     console.log("2Ancho:" + window.outerWidth + "\n" + "Alto:" + window.outerHeight);
+            // }
+            // Actualizamos la variable para el próximo cambio de orientación
+            wasPortrait = isPortrait;
+
+        });
+
     </script>
 </body>
 
