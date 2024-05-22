@@ -3,10 +3,6 @@ body {
   padding: 0;
 }
 
-#imagen {
-  /* Estilos para la imagen si es necesario */
-}
-
 .circle {
   position: absolute; /* Posiciona el círculo sobre la imagen */
   border-radius: 50%; /* Hace que el círculo sea redondo */
