@@ -35,10 +35,10 @@ body {
 .message-box {
   display: none; /* Inicialmente oculto */
   position: absolute;
-  background-color: #fff; /* Fondo blanco */
-  border: 1px sólido #000; /* Borde negro */
-  border-radius: 5%; /* Bordes redondeados */
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro translúcido */
+  color: white; /* Texto en blanco */
   padding: 10px; /* Espacio interno */
+  border-radius: 5px; /* Bordes redondeados */
   z-index: 999; /* Asegura que está por encima de otros elementos */
 }
 
