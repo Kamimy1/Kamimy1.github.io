@@ -32,22 +32,15 @@ body {
   }
 }
 
-
 .message-box {
   display: none; /* Inicialmente oculto */
   position: absolute;
-  background: rgba(0, 0, 0, 0.7);
-  /*background-color: #fff; /* Fondo blanco */
-  color: white; /* Texto en blanco */
+  background-color: #fff; /* Fondo blanco */
+  border: 1px sólido #000; /* Borde negro */
+  border-radius: 5%; /* Bordes redondeados */
   padding: 10px; /* Espacio interno */
-  border-radius: 5px; /* Bordes redondeados */
-  /*border: 1px sólido #000; /* Borde negro */
-  /*border-radius: 5%; /* Bordes redondeados */
-  /*padding: 10px; /* Espacio interno */
   z-index: 999; /* Asegura que está por encima de otros elementos */
-  
 }
-
 
 .close-btn {
   font-size: 0.75em; /* Tamaño de la fuente */
