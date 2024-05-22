@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Circulos con mensajes</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container" oncontextmenu="togglePointsCreation(event)">
-
-        <img src="images/mirador.jpg">
-        <!--<img src="https://www.osuna.es/export/sites/osuna/.galleries/Mutimedia/Calles/MIRADOR-DE-LA-COLEGIATA.jpg_538135410.jpg"
-            alt="Imagen" id="imagen">-->
+        <img src="https://www.osuna.es/export/sites/osuna/.galleries/Mutimedia/Calles/MIRADOR-DE-LA-COLEGIATA.jpg_538135410.jpg"
+            alt="Imagen" id="imagen">
     </div>
     <script>
         var messages = {};
@@ -73,16 +70,15 @@
                 renderCircle(data);
             });
         }
-
-        /*function togglePointsCreation(event) {
-            event.preventDefault(); // Evita que aparezca el menu contextual del navegador al hacer clic derecho
-            pointsCreationEnabled = !pointsCreationEnabled;
-            if (pointsCreationEnabled) {
-                document.body.style.cursor = 'crosshair'; // Cambia el cursor para indicar que la creacion de puntos esta habilitada
-            } else {
-                document.body.style.cursor = 'auto'; // Restaura el cursor predeterminado
-            }
-        }*/
+        /**function togglePointsCreation(event) {
+         event.preventDefault(); // Evita que aparezca el menu contextual del navegador al hacer clic derecho
+        pointsCreationEnabled = !pointsCreationEnabled;
+        if (pointsCreationEnabled) {
+            document.body.style.cursor = 'crosshair'; // Cambia el cursor para indicar que la creacion de puntos esta habilitada
+        } else {
+            document.body.style.cursor = 'auto'; // Restaura el cursor predeterminado
+        }
+        }**/
 
         function addCircle(event) {
 
