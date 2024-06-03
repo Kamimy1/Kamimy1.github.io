@@ -1,1 +1,1 @@
-![QR](https://drive.google.com/file/d/1xZpE7Z0E-CFo5U7AHUkSSbUTYkYkj8o4/view?usp=sharing)
+![QR](https://drive.google.com/file/d/1kUf2H0GUZ0fp13eJblGQ1CXj6zUFdjsS/view?usp=sharing)
