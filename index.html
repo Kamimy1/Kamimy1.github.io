@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -20,99 +21,49 @@
     </div>
     <script>
         var messages = {};
-        var circlesData =
-            [
-                {
-                    "x": 456,
-                    "y": 786,
-                    "message": "Hola, esta semana es una fiesta fun fun fun en navidad lo que queremos es telefonica, el mejor duo por solo 29.80 al mes, estas denominado Si quieres gratis iva, ahora gratis es ohyeah"
-                },
-                {
-                    "x": 1513,
-                    "y": 562,
-                    "message": "2"
-                },
-                {
-                    "x": 168,
-                    "y": 896,
-                    "message": "3"
-                },
-                {
-                    "x": 604,
-                    "y": 218,
-                    "message": "44"
-                }
-            ];
+        var circlesData = [
+            {
+                "x": 456,
+                "y": 786,
+                "message": "Hola, esta semana es una fiesta fun fun fun en navidad lo que queremos es telefonica, el mejor duo por solo 29.80 al mes, estas denominado Si quieres gratis iva, ahora gratis es ohyeah"
+            },
+            {
+                "x": 1513,
+                "y": 562,
+                "message": "2"
+            },
+            {
+                "x": 168,
+                "y": 896,
+                "message": "3"
+            },
+            {
+                "x": 604,
+                "y": 218,
+                "message": "44"
+            }
+        ];
         var pointsCreationEnabled = false;
         var ventanaAncho = Math.max(screen.width, screen.height);
-
         var ventanaAlto = window.innerHeight;
         var imagen = document.getElementById('imagen');
 
-
         window.onload = function () {
-            // screen.orientation.lock("landscape");
-            // Obtener el ancho de la ventana en pixeles
-
-            // let wasPortrait = screen.orientation.type.startsWith('portrait');
-
-            // screen.orientation.addEventListener("change", (event) => {
-            //     let isPortrait = screen.orientation.type.startsWith('portrait');
-
-
-            //     if (wasPortrait && !isPortrait) {
             buildApp();
-
-            //     }
-
-            //     wasPortrait = isPortrait;
-
-            // });
-
-
         }
 
-
         function buildApp() {
-
             for (var i = 0; i < circlesData.length; i++) {
-                // Acceder al objeto actual
                 var circleData = circlesData[i];
-
-                // Modificar dinámicamente los valores de x e y
-                // circleData.x = (Math.max(screen.width, screen.height) / (imagen.naturalWidth / circleData.x)); // Modificar el valor de x
-                // circleData.y = ((Math.max(screen.width, screen.height) / (imagen.naturalWidth / imagen.naturalHeight)) / (imagen.naturalHeight / circleData.y)); // Modificar el valor de y
-
-                console.log(
-                    "x: " + circleData.x + '\n' +
-                    "Ancho ventana usando Math.max(screen.width, screen.height): " + ventanaAncho + '\n' +
-                    "Ancho ventana usando document.documentElement.clientWidth: " + document.documentElement.clientWidth + '\n' +
-                    "Ancho imagen: " + imagen.naturalWidth + '\n' +
-                    "División (imagen.naturalWidth / circleData.x):" + (imagen.naturalWidth / circleData.x) + '\n' +
-                    "División (Math.max(screen.width, screen.height) / (imagen.naturalWidth / circleData.x)):" + (Math.max(screen.width, screen.height) / (imagen.naturalWidth / circleData.x))
-                );
-
-                circleData.x = (ventanaAncho / (imagen.naturalWidth / circleData.x)); // Modificar el valor de x
-
-
-                circleData.y = ((ventanaAncho / (imagen.naturalWidth / imagen.naturalHeight)) / (imagen.naturalHeight / circleData.y)); // Modificar el valor de y
-
-
-
-                // circleData.x = circleData.x; // Modificar el valor de x
-                // circleData.y = circleData.y; // Modificar el valor de y
-
+                circleData.x = (ventanaAncho / (imagen.naturalWidth / circleData.x));
+                circleData.y = ((ventanaAncho / (imagen.naturalWidth / imagen.naturalHeight)) / (imagen.naturalHeight / circleData.y));
                 console.log(circleData.x + "\n" + circleData.y);
-
             }
-            imagen.style.width = Math.max(screen.width, screen.height) + 'px'; // Establecer el ancho de la imagen
-            // imagen.style.height = ventanaAlto + 'px'; // Establecer el ancho de la imagen
-            // Renderizar los círculos después de haber modificado los datos
+            imagen.style.width = Math.max(screen.width, screen.height) + 'px';
             circlesData.forEach(function (data, index) {
                 renderCircle(data);
             });
         }
-
 
         /**function togglePointsCreation(event) {
             event.preventDefault(); // Evita que aparezca el menu contextual del navegador al hacer clic derecho
@@ -125,14 +76,10 @@
         }**/
 
         function addCircle(event) {
-
-            if (!pointsCreationEnabled) return; // Si la creacion de puntos no esta habilitada, salir de la funcion
+            if (!pointsCreationEnabled) return;
             const rect = imagen.getBoundingClientRect();
             var x = (event.clientX - Math.trunc(rect.left));
             var y = (event.clientY - Math.trunc(rect.top));
-
-
-
 
             console.log(
                 'Event Click X: ' + event.clientX + '\n' + 'Event Click Y: ' + event.clientY
@@ -144,15 +91,13 @@
                 'Offset X: ' + imagen.offsetWidth + '\n' + 'Offset Y: ' + imagen.offsetHeight
             );
 
-
-            console.log('x:' + x + '\n' + 'y:' + y);
             var message = prompt("Introduce el mensaje para este circulo:");
             if (message) {
                 circlesData.push({ x: x, y: y, message: message });
                 renderCircle({ x: x, y: y, message: message });
             }
         }
-        // Función para mostrar el mensaje
+
         function showMessage(circle, message) {
             var messageId = circle.dataset.messageId;
 
@@ -162,12 +107,9 @@
                 messageBox.className = 'message-box';
 
                 var circleRadius = circle.offsetWidth * 0.5;
-
                 var messageText = document.createTextNode(message);
-                messageBox.style.left = (circle.offsetLeft + circleRadius) + 'px'; // Ajuste para la esquina superior derecha
-                messageBox.style.top = (circle.offsetTop - circleRadius) + 'px'; // Ajuste para la esquina superior derecha
-
-
+                messageBox.style.left = (circle.offsetLeft + circleRadius) + 'px';
+                messageBox.style.top = (circle.offsetTop - circleRadius) + 'px';
 
                 var closeBtn = document.createElement('span');
                 closeBtn.className = 'close-btn';
@@ -175,17 +117,31 @@
 
                 closeBtn.onclick = function () {
                     messageBox.parentNode.removeChild(messageBox);
-                    delete messages[messageId]; // Eliminar el mensaje asociado a este circulo
-                    delete circle.dataset.messageId; // Eliminar el atributo messageId del circulo
+                    delete messages[messageId];
+                    delete circle.dataset.messageId;
                 };
+
+                var infoLink = document.createElement('a');
+                if (message === "Hola, esta semana es una fiesta fun fun fun en navidad lo que queremos es telefonica, el mejor duo por solo 29.80 al mes, estas denominado Si quieres gratis iva, ahora gratis es ohyeah") {
+                    infoLink.href = "prueba.html";
+                } else if (message === "3") {
+                    infoLink.href = "prueba2.html";
+                } else {
+                    infoLink.href = "#"; // Default link or no link
+                }
+                infoLink.innerHTML = " más información aquí";
+                infoLink.style.textDecoration = "underline";
+                infoLink.style.color = "blue";
+                infoLink.style.cursor = "pointer";
 
                 messageBox.appendChild(closeBtn);
                 messageBox.appendChild(messageText);
+                messageBox.appendChild(infoLink);
 
                 document.body.appendChild(messageBox);
 
                 // Almacenar el mensaje asociado a este circulo
-                messageId = Date.now(); // Identificador unico del mensaje
+                messageId = Date.now();
                 circle.dataset.messageId = messageId;
                 messages[messageId] = messageBox;
             }
@@ -194,45 +150,23 @@
                 var messageElement = messages[messageId];
                 var numCaracteres = messageElement.innerText.length;
                 var ventanaAncho = Math.max(screen.width, screen.height);
-
                 var imagenAncho = imagen.naturalWidth;
-
-                // Calcular el ancho deseado del mensaje
                 var anchoDeseado = (ventanaAncho / imagenAncho) * numCaracteres * 5;
-
-                // Establecer el nuevo ancho del mensaje
                 messageElement.style.width = anchoDeseado + 'px';
-
-                // Ajustar el tamaño de la fuente del mensaje
-                var fontSize = (ventanaAncho / imagenAncho) * 16; // Ajustar el tamaño de la fuente en relación con el ancho de la imagen y ventana
+                var fontSize = (ventanaAncho / imagenAncho) * 16;
                 messageElement.style.fontSize = fontSize + 'px';
-
-                // Ajustar el padding y el borde y su radio del contenedor de forma proporcional a la ventana
                 var padding = (ventanaAncho / 100) + 'px';
                 var border = (ventanaAncho / imagenAncho) + 'px';
-                //var borderRadius = (ventanaAncho / imagenAncho) * 5 + '%';
-
-
                 messageElement.style.padding = padding;
                 messageElement.style.borderWidth = border;
-                //messageElement.style.borderRadius = borderRadius;
             });
-            // Mostrar el mensaje
+
             messages[messageId].style.display = 'block';
         }
+
         // Función para renderizar un círculo
         function renderCircle(data) {
             var relacionCirculo = (Math.max(screen.width, screen.height) * 10) / imagen.naturalWidth;
-            //Math.max(screen.width, screen.height)
-
-            console.log("relacion circulo:" + relacionCirculo);
-            console.log(
-
-                "(Math.max(screen.width, screen.height) * 10) / imagen.naturalWidth" +
-                "\n" +
-                "(" + Math.max(screen.width, screen.height) + "* 10) / " + imagen.naturalWidth + ":" + relacionCirculo
-
-            );
             var container = document.querySelector('.container');
             var circle = document.createElement('div');
             circle.className = 'circle';
@@ -242,25 +176,19 @@
             };
             circle.style.left = ((data.x - (relacionCirculo / 2)) + 'px');
             circle.style.top = ((data.y - (relacionCirculo / 2)) + 'px');
-            // circle.style.width = ((ventanaAncho * 10) / imagen.naturalWidth) + "px";
-            // circle.style.height = ((ventanaAncho * 10) / imagen.naturalWidth) + "px";
             circle.style.width = relacionCirculo + "px";
             circle.style.height = relacionCirculo + "px";
             container.appendChild(circle);
         }
 
-
-
         function extraerInformacion(event) {
-            // Verificar si la tecla presionada es "V" (86 es el codigo ASCII de "V")
             if (event.keyCode === 86) {
                 console.log("Messages:", JSON.stringify(messages));
                 console.log("CirclesData:", JSON.stringify(circlesData));
-                // Aquí puedes realizar cualquier otra operación con los datos extraídos
             }
         }
 
-        // Escuchar los clics en la pagina para agregar circulos si la creacion de puntos esta habilitada
+         // Escuchar los clics en la pagina para agregar circulos si la creacion de puntos esta habilitada
         document.addEventListener('click', addCircle);
         document.addEventListener("keypress", extraerInformacion);
 
@@ -269,9 +197,7 @@
         screen.orientation.addEventListener("change", (event) => {
             let isPortrait = screen.orientation.type.startsWith('portrait');
 
-
             if (wasPortrait && !isPortrait) {
-                // Aquí se ejecuta el código cuando se pasa de retrato a paisaje
                 imagen.style.width = Math.max(screen.width, screen.height) + 'px';
                 document.querySelectorAll('.circle').forEach(circle => circle.remove());
                 circlesData.forEach(function (data, index) {
@@ -280,11 +206,8 @@
 
                 console.log("1Ancho:" + screen.width + "\n" + "Alto:" + screen.height);
             }
-            // Actualizamos la variable para el próximo cambio de orientación
             wasPortrait = isPortrait;
-
         });
-
     </script>
 </body>
 
