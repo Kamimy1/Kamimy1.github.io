@@ -1,1 +1,7 @@
-<span>![</span><span>Aquí la descripción de la imagen por si no carga</span><span>]</span><span>(</span><span>https://raw.githubusercontent.com/kamimy1/Kamimy1.github.io/master/images/QR.png</span><span>)</span>
+#Mirador de Osuna
+> **Nota:** En desarrollo.
+
+## QR para acceder al proyecto
+
+![QR](https://github.com/Kamimy1/Kamimy1.github.io/raw/main/images/QR.png)
+
