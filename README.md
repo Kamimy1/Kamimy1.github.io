@@ -1,4 +1,4 @@
-#Mirador de Osuna
+# Mirador de Osuna
 > **Nota:** En desarrollo.
 
 ## QR para acceder al proyecto
