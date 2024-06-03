@@ -68,4 +68,17 @@ body {
   .flip-landscape {
       display: none;
   }
+
+
+}
+
+.flip-landscape img{
+  display:block;
+  margin:auto;
+}
+.flip-landscape p {
+  text-align: center;
+  justify-content: center;
+  color: red;
+  font-size: 100px;
 }
