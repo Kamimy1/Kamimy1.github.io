@@ -1,1 +1,1 @@
-![QR](https://drive.google.com/file/d/1kUf2H0GUZ0fp13eJblGQ1CXj6zUFdjsS/view?usp=sharing)
+<span>![</span><span>Aquí la descripción de la imagen por si no carga</span><span>]</span><span>(</span><span>https://raw.githubusercontent.com/kamimy1/Kamimy1.github.io/master/images/QR.png</span><span>)</span>
