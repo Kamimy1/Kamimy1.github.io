@@ -1,1 +1,7 @@
-![QR](https://drive.google.com/file/d/1kUf2H0GUZ0fp13eJblGQ1CXj6zUFdjsS/view?usp=sharing)
+# Mirador de Osuna
+> **Nota:** En desarrollo.
+
+## QR para acceder al proyecto
+
+![QR](https://github.com/Kamimy1/Kamimy1.github.io/raw/main/images/QR.png)
+
