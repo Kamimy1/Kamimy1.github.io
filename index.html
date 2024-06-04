@@ -221,16 +221,16 @@
                 });
 
                 console.log("1Ancho:" + screen.width + "\n" + "Alto:" + screen.height);
+            }
+            wasPortrait = isPortrait;
 
-                // Elimina todos los message boxes
-                for (var id in messages) {
+            // Elimina todos los message boxes
+            for (var id in messages) {
                     if (messages.hasOwnProperty(id)) {
                         messages[id].parentNode.removeChild(messages[id]);
                     }
                 }
                 messages = {};
-            }
-            wasPortrait = isPortrait;
         });
     </script>
 </body>
