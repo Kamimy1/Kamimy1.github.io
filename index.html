@@ -140,6 +140,16 @@
                 infoLink.style.color = "#00F0FF";
                 infoLink.style.cursor = "pointer";
 
+                infoLink.onclick = function () {
+                    // Elimina todos los message boxes
+                    for (var id in messages) {
+                        if (messages.hasOwnProperty(id)) {
+                            messages[id].parentNode.removeChild(messages[id]);
+                        }
+                    }
+                    messages = {};
+                };
+
                 messageBox.appendChild(closeBtn);
                 messageBox.appendChild(messageText);
                 messageBox.appendChild(infoLink);
@@ -194,7 +204,7 @@
             }
         }
 
-         // Escuchar los clics en la pagina para agregar circulos si la creacion de puntos esta habilitada
+        // Escuchar los clics en la pagina para agregar circulos si la creacion de puntos esta habilitada
         document.addEventListener('click', addCircle);
         document.addEventListener("keypress", extraerInformacion);
 
@@ -211,6 +221,14 @@
                 });
 
                 console.log("1Ancho:" + screen.width + "\n" + "Alto:" + screen.height);
+
+                // Elimina todos los message boxes
+                for (var id in messages) {
+                    if (messages.hasOwnProperty(id)) {
+                        messages[id].parentNode.removeChild(messages[id]);
+                    }
+                }
+                messages = {};
             }
             wasPortrait = isPortrait;
         });
