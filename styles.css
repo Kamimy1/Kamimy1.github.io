@@ -10,25 +10,25 @@ body {
 .circle {
   position: absolute; /* Posiciona el círculo sobre la imagen */
   border-radius: 50%; /* Hace que el círculo sea redondo */
-  width: 20px; /* Tamaño del círculo */
-  height: 20px;
-  background: rgba(255, 255, 0, 0.5); /* Color amarillo translúcido */
+  width: 50px; /* Tamaño del círculo */
+  height: 50px;
+  background: rgb(60, 255, 0); /* Color amarillo translúcido */
   animation: pulsate 2s infinite; /* Animación de pulsación */
   cursor: pointer; /* Cambia el cursor a una mano para indicar interactividad */
 }
 
 @keyframes pulsate {
   0% {
-    transform: scale(1); /* Escala normal */
-    opacity: 0.5; /* Opacidad inicial */
+    transform: scale(2); /* Escala normal */
+    opacity: 1; /* Opacidad inicial */
   }
   50% {
-    transform: scale(1.2); /* Escala durante la pulsación */
-    opacity: 1; /* Opacidad más alta durante la pulsación */
+    transform: scale(1.5); /* Escala durante la pulsación */
+    opacity: 0.5; /* Opacidad más alta durante la pulsación */
   }
   100% {
-    transform: scale(1); /* Vuelve a la escala original */
-    opacity: 0.5; /* Vuelve a la opacidad inicial */
+    transform: scale(2); /* Vuelve a la escala original */
+    opacity: 1; /* Vuelve a la opacidad inicial */
   }
 }
 

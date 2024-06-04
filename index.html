@@ -24,24 +24,29 @@
         var messages = {};
         var circlesData = [
             {
-                "x": 456,
-                "y": 786,
-                "message": "Hola, esta semana es una fiesta fun fun fun en navidad lo que queremos es telefonica, el mejor duo por solo 29.80 al mes, estas denominado Si quieres gratis iva, ahora gratis es ohyeah"
+                "x": 800,
+                "y": 650,
+                "message": "Ayuntamiento de Osuna"
             },
             {
-                "x": 1513,
+                "x": 1250,
                 "y": 562,
-                "message": "2"
+                "message": "Antiguo Convento de Santa Catalina"
             },
             {
-                "x": 168,
-                "y": 896,
-                "message": "3"
+                "x": 1050,
+                "y": 650,
+                "message": "Iglesia Convento de la Concepción"
             },
             {
-                "x": 604,
-                "y": 218,
-                "message": "44"
+                "x": 1515,
+                "y": 550,
+                "message": "Iglesia San Carlos el Real"
+            },
+            {
+                "x": 550,
+                "y": 650,
+                "message": "Palacio de los cepeda"
             }
         ];
         var pointsCreationEnabled = false;
@@ -123,16 +128,16 @@
                 };
 
                 var infoLink = document.createElement('a');
-                if (message === "Hola, esta semana es una fiesta fun fun fun en navidad lo que queremos es telefonica, el mejor duo por solo 29.80 al mes, estas denominado Si quieres gratis iva, ahora gratis es ohyeah") {
+                if (message === "Ayuntamiento de Osuna") {
                     infoLink.href = "prueba.html";
-                } else if (message === "3") {
+                } else if (message === "Antiguo Convento de Santa Catalina") {
                     infoLink.href = "prueba2.html";
                 } else {
                     infoLink.href = "#"; // Default link or no link
                 }
-                infoLink.innerHTML = " más información aquí";
+                infoLink.innerHTML = " Más información aquí";
                 infoLink.style.textDecoration = "underline";
-                infoLink.style.color = "blue";
+                infoLink.style.color = "#00F0FF";
                 infoLink.style.cursor = "pointer";
 
                 messageBox.appendChild(closeBtn);
