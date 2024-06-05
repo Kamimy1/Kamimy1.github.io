@@ -42,6 +42,10 @@ body {
   z-index: 999; /* Asegura que está por encima de otros elementos */
 }
 
+.hidden {
+  display: none !important;
+}
+
 .close-btn {
   font-size: 0.75em; /* Tamaño de la fuente */
   cursor: pointer; /* Cambia el cursor a una mano para indicar interactividad */
