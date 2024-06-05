@@ -56,6 +56,7 @@
 
         window.onload = function () {
             buildApp();
+            loadMessages();
         }
 
         function buildApp() {
@@ -125,6 +126,7 @@
                     messageBox.parentNode.removeChild(messageBox);
                     delete messages[messageId];
                     delete circle.dataset.messageId;
+                    saveMessages();
                 };
 
                 var infoLink = document.createElement('a');
@@ -147,7 +149,8 @@
                             messages[id].parentNode.removeChild(messages[id]);
                         }
                     }
-                    
+                    messages = {};
+                    saveMessages();
                 };
 
                 messageBox.appendChild(closeBtn);
@@ -160,6 +163,7 @@
                 messageId = Date.now();
                 circle.dataset.messageId = messageId;
                 messages[messageId] = messageBox;
+                saveMessages();
             }
 
             requestAnimationFrame(function () {
@@ -204,6 +208,74 @@
             }
         }
 
+        function saveMessages() {
+            var messageData = [];
+            for (var id in messages) {
+                if (messages.hasOwnProperty(id)) {
+                    var messageBox = messages[id];
+                    messageData.push({
+                        id: id,
+                        left: messageBox.style.left,
+                        top: messageBox.style.top,
+                        message: messageBox.textContent
+                    });
+                }
+            }
+            localStorage.setItem('messages', JSON.stringify(messageData));
+        }
+
+        function loadMessages() {
+            var messageData = JSON.parse(localStorage.getItem('messages')) || [];
+            messageData.forEach(function (data) {
+                var messageBox = document.createElement('div');
+                messageBox.className = 'message-box';
+                messageBox.style.left = data.left;
+                messageBox.style.top = data.top;
+                messageBox.textContent = data.message;
+
+                var closeBtn = document.createElement('span');
+                closeBtn.className = 'close-btn';
+                closeBtn.innerHTML = '&nbsp;&nbsp;<sup style>X</sup>';
+
+                closeBtn.onclick = function () {
+                    messageBox.parentNode.removeChild(messageBox);
+                    delete messages[data.id];
+                    saveMessages();
+                };
+
+                var infoLink = document.createElement('a');
+                if (data.message.includes("Ayuntamiento de Osuna")) {
+                    infoLink.href = "prueba.html";
+                } else if (data.message.includes("Antiguo Convento de Santa Catalina")) {
+                    infoLink.href = "prueba2.html";
+                } else {
+                    infoLink.href = "#"; // Default link or no link
+                }
+                infoLink.innerHTML = " Más información aquí";
+                infoLink.style.textDecoration = "underline";
+                infoLink.style.color = "#00F0FF";
+                infoLink.style.cursor = "pointer";
+
+                infoLink.onclick = function () {
+                    // Elimina todos los message boxes
+                    for (var id in messages) {
+                        if (messages.hasOwnProperty(id)) {
+                            messages[id].parentNode.removeChild(messages[id]);
+                        }
+                    }
+                    messages = {};
+                    saveMessages();
+                };
+
+                messageBox.appendChild(closeBtn);
+                messageBox.appendChild(infoLink);
+
+                document.body.appendChild(messageBox);
+
+                messages[data.id] = messageBox;
+            });
+        }
+
         // Escuchar los clics en la pagina para agregar circulos si la creacion de puntos esta habilitada
         document.addEventListener('click', addCircle);
         document.addEventListener("keypress", extraerInformacion);
@@ -221,16 +293,17 @@
                 });
 
                 console.log("1Ancho:" + screen.width + "\n" + "Alto:" + screen.height);
-            }
-            wasPortrait = isPortrait;
 
-            // Elimina todos los message boxes
-            for (var id in messages) {
+                // Elimina todos los message boxes
+                for (var id in messages) {
                     if (messages.hasOwnProperty(id)) {
                         messages[id].parentNode.removeChild(messages[id]);
                     }
                 }
-                
+                messages = {};
+                saveMessages();
+            }
+            wasPortrait = isPortrait;
         });
     </script>
 </body>
