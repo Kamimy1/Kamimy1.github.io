@@ -71,7 +71,7 @@ body {
 
 
 }
-
+/**
 .flip-landscape img{
   display:block;
   margin:auto;
@@ -81,4 +81,36 @@ body {
   justify-content: center;
   color: red;
   font-size: 100px;
+}
+
+**/
+
+/* Estilos para .flip-landscape */
+.flip-landscape {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.flip-landscape img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.flip-landscape p {
+  text-align: center;
+  color: #e74c3c;
+  font-size: 2em;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
 }
