@@ -139,10 +139,7 @@
                 infoLink.style.textDecoration = "underline";
                 infoLink.style.color = "#00F0FF";
                 infoLink.style.cursor = "pointer";
-                
-                infoLink.onclick = function () {
-                    document.querySelectorAll('.message-box').forEach(box => box.classList.add('hidden'));
-                };
+
 
                 messageBox.appendChild(closeBtn);
                 messageBox.appendChild(messageText);
@@ -208,15 +205,22 @@
             let isPortrait = screen.orientation.type.startsWith('portrait');
 
             if (wasPortrait && !isPortrait) {
+                document.querySelectorAll('.message-box').forEach(element => {element.style.removeProperty('display');});
+
+                document.querySelectorAll('.message-box').forEach(element => {element.remove();});
+
                 imagen.style.width = Math.max(screen.width, screen.height) + 'px';
                 document.querySelectorAll('.circle').forEach(circle => circle.remove());
                 circlesData.forEach(function (data, index) {
                     renderCircle(data);
                 });
 
-                document.querySelectorAll('.message-box').forEach(box => box.classList.add('hidden'));
+                
 
                 console.log("1Ancho:" + screen.width + "\n" + "Alto:" + screen.height);
+            } else {
+                console.log("Hula");
+                document.querySelectorAll('.message-box').forEach(element => {element.style.display = 'none';});
             }
             wasPortrait = isPortrait;
 
