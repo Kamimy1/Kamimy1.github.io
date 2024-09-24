@@ -1,5 +1,5 @@
 # Mirador de Osuna
-> **Nota:** En desarrollo.
+> **Nota:** Pendiente de aprobacion por el concejal.
 
 ## QR para acceder al proyecto
 
